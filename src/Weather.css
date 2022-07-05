@@ -9,7 +9,6 @@ body {
 
 
   .container {
-   
     border: 1px solid whitesmoke;
     border-radius: 8px;
     display: block;
@@ -64,6 +63,7 @@ body {
   }
   footer {
     color: rgb(135, 135, 135);
+    font-size: 12px;
   }
   .row .temperature-number {
     color: #878787;
