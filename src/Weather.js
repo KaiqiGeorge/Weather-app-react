@@ -2,18 +2,11 @@ import React, { useState } from "react";
 import "./Weather.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
-import displatDate from "./displayDate";
+import DisplayDate from "./DisplayDate";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
-
-  function changeToFah(response) {
-    return Math.round((response.data.main.temp * 9) / 5 + 32);
-  }
-  function changeToCel(response) {
-    return Math.round(response.data.main.temp);
-  }
 
   function displayWeather(response) {
     setWeatherData({
@@ -31,7 +24,7 @@ export default function Weather(props) {
 
   function search() {
     const apiKey = "d5a8e815ad3352e76fb600d6bbd808c7";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=Imperial`;
     axios.get(apiUrl).then(displayWeather);
   }
 
@@ -74,7 +67,7 @@ export default function Weather(props) {
             <li>
               Last updated:{" "}
               <span id="time">
-                <displayDate date={weatherData.date} />
+                <DisplayDate date={weatherData.date} />
               </span>
             </li>
             <li className="weather-description">{weatherData.description}</li>
@@ -90,12 +83,9 @@ export default function Weather(props) {
                 {weatherData.temperature}
               </span>
               <span className="units">
-                <a className="active Celsius" href="/" onClick={changeToFah}>
-                  °C|
-                </a>
-                <a className="Fah" href="/" onClick={changeToCel}>
+        
                   °F
-                </a>
+               
               </span>
             </div>
             <div className="col-5">
@@ -121,7 +111,7 @@ export default function Weather(props) {
           <a
             href="https://github.com/KaiqiGeorge/Weather-app-react"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             open-sourced
           </a>{" "}
@@ -129,7 +119,7 @@ export default function Weather(props) {
           <a
             href="https://kaiqi-weather-app-react.netlify.app/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             Netlify
           </a>
