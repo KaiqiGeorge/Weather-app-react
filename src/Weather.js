@@ -37,6 +37,7 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
+
   if (weatherData.ready) {
     return (
       <div className="wrapper">
@@ -64,12 +65,12 @@ export default function Weather(props) {
           <h1 className="cityName">{weatherData.city}</h1>
           <ul className="time-weather">
             <li>
-              Last updated:{" "}
+             
               <span id="time">
                 <DisplayDate date={weatherData.date} />
               </span>
             </li>
-            <li className="weather-description">{weatherData.description}</li>
+            <li className="weather-description text-capitalize">{weatherData.description}</li>
           </ul>
           <div className="row">
             <div className="col-7">
@@ -81,13 +82,14 @@ export default function Weather(props) {
               <span className="temperature-number">
                 {weatherData.temperature}
               </span>
-              <span className="units">°F</span>
+              <span className="units" >°F</span>
             </div>
             <div className="col-5">
               <ul className="weather-detail">
                 <li className="humidity">Humidity: {weatherData.humidity}%</li>
+                <li className="wind">Wind: {weatherData.wind}mi/h</li>
                 <li className="clouds">Clouds: {weatherData.clouds}%</li>
-                <li className="wind">Wind: {weatherData.wind}m/s</li>
+               
               </ul>
             </div>
           </div>
@@ -124,5 +126,5 @@ export default function Weather(props) {
   } else {
     search();
     return "Loading...";
-  }
+  };
 }
