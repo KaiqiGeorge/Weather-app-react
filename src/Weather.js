@@ -3,6 +3,7 @@ import "./Weather.css";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 import DisplayDate from "./DisplayDate";
+import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
@@ -12,6 +13,7 @@ export default function Weather(props) {
     setWeatherData({
       ready: true,
       city: response.data.name,
+      coord: response.data.coord,
       date: new Date(response.data.dt * 1000),
       description: response.data.weather[0].description,
       temperature: Math.round(response.data.main.temp),
@@ -36,7 +38,6 @@ export default function Weather(props) {
   function updateCity(event) {
     setCity(event.target.value);
   }
-
 
   if (weatherData.ready) {
     return (
@@ -65,12 +66,13 @@ export default function Weather(props) {
           <h1 className="cityName">{weatherData.city}</h1>
           <ul className="time-weather">
             <li>
-             
               <span id="time">
                 <DisplayDate date={weatherData.date} />
               </span>
             </li>
-            <li className="weather-description text-capitalize">{weatherData.description}</li>
+            <li className="weather-description text-capitalize">
+              {weatherData.description}
+            </li>
           </ul>
           <div className="row">
             <div className="col-7">
@@ -82,26 +84,18 @@ export default function Weather(props) {
               <span className="temperature-number">
                 {weatherData.temperature}
               </span>
-              <span className="units" >°F</span>
+              <span className="units">°F</span>
             </div>
             <div className="col-5">
               <ul className="weather-detail">
                 <li className="humidity">Humidity: {weatherData.humidity}%</li>
-                <li className="wind">Wind: {weatherData.wind}mi/h</li>
                 <li className="clouds">Clouds: {weatherData.clouds}%</li>
-               
+                <li className="wind">Wind: {weatherData.wind}mi/h</li>
               </ul>
             </div>
           </div>
-          <div className="row weather-forecast">
-            <div className="col-2">
-              <div className="weather-forecast-day"></div>
-              <div className="weather-forecast-icon"></div>
-              <div class="weather-forecast-tempMin"></div>
-              <div class="weather-forecast-tempMax"></div>
-            </div>
-          </div>
-        </div>
+          <WeatherForecast coord={weatherData.coord} />
+        
         <footer>
           {" "}
           This project was coded by Kaiqi George and it is{" "}
@@ -122,9 +116,10 @@ export default function Weather(props) {
           </a>
         </footer>
       </div>
-    );
+      </div>
+    )
   } else {
     search();
     return "Loading...";
-  };
+  }
 }
