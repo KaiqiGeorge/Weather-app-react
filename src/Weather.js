@@ -7,6 +7,14 @@ import displatDate from "./displayDate";
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
+
+  function changeToFah(response) {
+    return Math.round((response.data.main.temp * 9) / 5 + 32);
+  }
+  function changeToCel(response) {
+    return Math.round(response.data.main.temp);
+  }
+
   function displayWeather(response) {
     setWeatherData({
       ready: true,
@@ -82,10 +90,10 @@ export default function Weather(props) {
                 {weatherData.temperature}
               </span>
               <span className="units">
-                <a className="active Celsius" href="/">
+                <a className="active Celsius" href="/" onClick={changeToFah}>
                   °C|
                 </a>
-                <a className="Fah" href="/">
+                <a className="Fah" href="/" onClick={changeToCel}>
                   °F
                 </a>
               </span>
@@ -129,9 +137,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "d5a8e815ad3352e76fb600d6bbd808c7";
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayWeather);
+    search();
 
     return "Loading...";
   }
