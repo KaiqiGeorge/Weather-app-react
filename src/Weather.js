@@ -82,11 +82,7 @@ export default function Weather(props) {
               <span className="temperature-number">
                 {weatherData.temperature}
               </span>
-              <span className="units">
-        
-                  °F
-               
-              </span>
+              <span className="units">°F</span>
             </div>
             <div className="col-5">
               <ul className="weather-detail">
@@ -128,7 +124,6 @@ export default function Weather(props) {
     );
   } else {
     search();
-
     return "Loading...";
   }
 }
