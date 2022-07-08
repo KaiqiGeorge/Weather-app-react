@@ -37,7 +37,6 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  search("Beijing");
   if (weatherData.ready) {
     return (
       <div className="wrapper">
