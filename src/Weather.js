@@ -25,7 +25,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    const apiKey = "d5a8e815ad3352e76fb600d6bbd808c7";
+    const apiKey = "1df421a8e92c4deb66d8ea29cac386e6";
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=Imperial`;
     axios.get(apiUrl).then(displayWeather);
   }
@@ -84,7 +84,7 @@ export default function Weather(props) {
               <span className="temperature-number">
                 {weatherData.temperature}
               </span>
-              <span className="units">°F</span>
+              <span className="units">°</span>
             </div>
             <div className="col-5">
               <ul className="weather-detail">
@@ -93,8 +93,12 @@ export default function Weather(props) {
                 <li className="wind">Wind: {weatherData.wind}mi/h</li>
               </ul>
             </div>
+            <WeatherForecast coord={weatherData.coord} />
           </div>
-          <WeatherForecast coord={weatherData.coord} />
+
+         
+          </div>
+         
         
         <footer>
           {" "}
@@ -115,7 +119,8 @@ export default function Weather(props) {
             Netlify
           </a>
         </footer>
-      </div>
+       
+      
       </div>
     )
   } else {
