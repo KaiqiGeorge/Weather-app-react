@@ -110,6 +110,9 @@ footer {
 .weather-forecast-tempMin,
 .weather-forecast-tempMax {
   font-size: 15px;
+  text-align: justify;
+
+  
 }
 .weather-forecast-tempMin {
   opacity: 0.75;
