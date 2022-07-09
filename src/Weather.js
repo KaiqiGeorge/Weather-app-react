@@ -65,10 +65,9 @@ export default function Weather(props) {
 
           <h1 className="cityName">{weatherData.city}</h1>
           <ul className="time-weather">
-            <li>
-              <span id="time">
-                <DisplayDate date={weatherData.date} />
-              </span>
+            <li className="time">
+            <DisplayDate date={weatherData.date} />
+            
             </li>
             <li className="weather-description text-capitalize">
               {weatherData.description}

@@ -21,7 +21,7 @@ export default function DisplayDate(props){
     }
     return(
         <div>
-       {day} {hours}:{minutes}
+       Last updated: {day} {hours}:{minutes}
         </div>
     );
 
